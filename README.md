@@ -12,7 +12,7 @@ Serverless & Simple: No need for Node.js or backend servers for basic use. The m
 
 ## Setup Choices
 
-Amor's goal is to be lightweight, fast, and easy to integrate. There is no one-size-fits-all setup, but depending on your needs, you’ll likely end up with one of the following approaches, or something in between:
+Amor's goal is to be lightweight, fast, and easy to integrate. There is no one-size-fits-all setup. Depending on your needs, you’ll likely end up with one of the following approaches, or something in between:
 
 1. Minimalistic: no Backend required: Simply include the JavaScript library in your site, manage content by uploading/downloading your content in form of JSON-Files from/to your webspace or web-server.
 2. Intermediate: use your own webserver to manage enhanced security and other options. Extend the provided Amor-classes and/or write your own APIs. Integrate data from thirdparty APIs by extending Amor's abstract Transformer-class 
