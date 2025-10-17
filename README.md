@@ -20,7 +20,7 @@ Amor's goal is to be lightweight, fast, and easy to integrate. There is no one-s
 
 ## Contributing
 
-We welcome contributions! If you'd like to contribute, please fork the repository, make your changes, and submit a pull request. Please review our [Code of Conduct](CODE_OF_CONDUCT.md) and [Contributing Guidelines](CONTRIBUTING.md) before contributing.
+We welcome contributions! If you'd like to contribute, please fork the repository, make your changes, and submit a pull request. Please review our [Contributor License Agreement (CLA)](CLA.md) before contributing.
 
  
 ## Dual License Notice
