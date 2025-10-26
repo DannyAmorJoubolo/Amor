@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/amor-meta-schema.1.0.json",
+  "title": "The meta-schema of the amor-cms",
+  "description": "This file describes the meta-schema of the amor-framework and is the author’s copyrighted work, independent of any underlying implementation.",
+  "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007",
+  "type": "object",
+  "required": [
+    "content",
+    "mappings",
+    "supportedLanguages",
+    "pages",
+    "currentPage",
+    "other",
+    "copyright"
+  ],
+  "properties": {
+    "content": {
+      "type": "object",
+      "description": "Mandatory nested object content. The keys of this object must be iso-language acronyms; the contained nested objects are key-value pairs where the keys are valid integer identifiers, and the values are strings."
+    },
+    "mappings": {
+      "type": "object",
+      "description": "Mandatory nested object mappings. For referential integrity, every value in this object must be a valid integer and match a key in the content object. All keys must be valid strings suitable for DOM ID attributes."
+    },
+    "supportedLanguages": {
+      "type": "array",
+      "description": "Acronyms for supported languages (e.g. ISO 639-1, ISO 639-3, ISO 3166-1 Alpha-2, IETF Language Tag) of the model; the elements correspond to the keys of the content-object for referential integrity. For every item of the array, there must be a nested object in the content object."
+    },
+    "pages": {
+      "type": "array",
+      "description": "The names of pages associated with the current CMS, to be rendered using the current model. The retrieval and storage of each page depends on the controller type chosen for the specific implementation. E.g. the AmorWebSpaceController simply stores every page in a JSON-file having extension *.cms"
+    },
+    "currentPage": {
+      "type": "object",
+      "description": "An object holding the data from the model that is currently in use for rendering. The attribute 'currentPage.pageName' must be one of the elements of the pages-array"
+    },
+    "other": {
+      "type": "object",
+      "description": "Mandatory nested object other for any other purpose, e.g. authentication",
+      "required": [
+        "credentials"
+      ],
+      "properties": {
+        "credentials": {
+          "type": "object",
+          "description": "This nested object may contain data, such as usernames and email addresses, required for authentication when using the schema’s built-in lightweight authentication mechanism. Highly sensitive information (e.g., passwords, tokens) is never stored. For more advanced access control mechanisms, this object is neither required nor recommended."
+        }
+      },
+      "additionalProperties": true
+    },
+    "copyright": {
+      "type": "string",
+      "const": "© 2025 Danny Amor Joubolo danny.amor.joubolo@protonmail.com",
+      "description": "Copyright notice for this data structure. Must contain (C) 2025 Danny Amor Joubolo danny.amor.joubolo@protonmail.com"
+    }
+  },
+  "additionalProperties": false,
+  "$comment": "Note: Standard JSON Schemas cannot enforce referential integrity. This schema describes the  cross-property relationships of the amor-framework for documentation purposes."
+}
