@@ -21,7 +21,7 @@
     },
     "mappings": {
       "type": "object",
-      "description": "Mandatory nested object mappings. For referential integrity, every value in this object must be a valid integer and match a key in the content object. All keys must be valid strings suitable for DOM ID attributes."
+      "description": "Mandatory nested object mappings. For referential integrity, every value in this object must be a valid integer and match a key of one of the nested objects of the content object. All keys must be valid strings suitable for DOM ID attributes."
     },
     "supportedLanguages": {
       "type": "array",
