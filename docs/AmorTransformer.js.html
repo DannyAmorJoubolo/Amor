@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>AmorTransformer.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-amorCms.AmorAbstractController.html">AmorAbstractController</a><ul class='methods'><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#addAmorElementToPage">addAmorElementToPage</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#addNewPage">addNewPage</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#doPersist">doPersist</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getContentCount">getContentCount</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getJWTToken">getJWTToken</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getLocaleContent">getLocaleContent</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getValueByLocale">getValueByLocale</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#populateModel">populateModel</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#readPageContent">readPageContent</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#searchForPages">searchForPages</a></li></ul></li><li><a href="module-amorCms.AmorAbstractTransformer.html">AmorAbstractTransformer</a></li><li><a href="module-amorCms.AmorFactory.html">AmorFactory</a></li><li><a href="module-amorCms.AmorModel.html">AmorModel</a><ul class='methods'><li data-type='method'><a href="module-amorCms.AmorModel.html#load">load</a></li><li data-type='method'><a href="module-amorCms.AmorModel.html#loadContent">loadContent</a></li></ul></li><li><a href="module-amorCms-AmorAbstractAuthHandler.html">AmorAbstractAuthHandler</a></li><li><a href="module-amorCms-AmorAbstractController.html">AmorAbstractController</a></li><li><a href="module-amorCms-AmorAbstractTransformer.html">AmorAbstractTransformer</a></li><li><a href="module-amorCms-AmorAuthHandler.html">AmorAuthHandler</a></li><li><a href="module-amorCms-AmorError.html">AmorError</a></li><li><a href="module-amorCms-AmorFactory.html">AmorFactory</a></li><li><a href="module-amorCms-AmorModel.html">AmorModel</a></li><li><a href="module-amorCms-SupabaseAuthHandler.html">SupabaseAuthHandler</a></li><li><a href="module-amorCustom.AmorApiController.html">AmorApiController</a></li><li><a href="module-amorCustom.AmorWebSpaceController.html">AmorWebSpaceController</a></li><li><a href="module-amorCustom-AmorApiController.html">AmorApiController</a></li><li><a href="module-amorCustom-AmorWebSpaceController.html">AmorWebSpaceController</a></li></ul><h3>Modules</h3><ul><li><a href="module-amorCms.html">amorCms</a></li><li></li><li></li><li></li><li><a href="module-amorCustom.html">amorCustom</a></li><li></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">AmorTransformer.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module amorCms  */
+/**
+ * @file AmorAbstractTransformer.js
+ * @copyright (C) 2025 Danny Amor Joubolo danny.amor.joubolo@protonmail.com
+ * @license Dual License Notice
+ *
+ * This software is licensed under the GNU Affero General Public License version 3 (AGPLv3) or later.
+ * See the LICENSE.AGPL file for the full text.
+ * If you wish to use this software under different terms, such as a commercial license that does not
+ * require you to disclose modifications or source code (e.g., for proprietary use or internal development),
+ * please contact danny.amor.joubolo@protonmail.com to discuss licensing options.
+ * Commercial licenses are available for a fee and allow closed-source modifications and distribution.
+ *
+ * Copyright (C) 2025 Danny Amor Joubolo
+ *
+ *
+ *
+ */
+import {AmorAbstractController,AmorAbstractAuthHandler, AmorError} from "@amor/amor-cms";
+/**
+ * The AmorAbstractTransformer is the class that interacts with thirdparty-data
+ * @class AmorAbstractTransformer
+ * @classdesc  The AmorAbstractTransformer is the base class which needs to be extended in order to integrate data
+ * from other sources. The extending class must map the responses from third-party-APIs to the JSON-schema of Amor-cms
+ *
+ */
+export class AmorAbstractTransformer {
+    /**
+     * Virtual constructor called when an Amor Transformer is instantiated.
+     * @param {AmorAbstractController} controller - An instance of class AmorAbstractController.
+     * @param {AmorAbstractAuthHandler} authHandler - An instance of class AmorAbstractAuthHandler.
+     * @throws {AmorError} If `cms` is not the instance of an AmorModel
+     * @constructs
+     */
+    constructor(controller, authHandler) {
+ 
+	}
+
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Tue Oct 21 2025 23:49:12 GMT+0200 (Mitteleuropäische Sommerzeit) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

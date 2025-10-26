@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>AmorAbstractController.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-amorCms.AmorAbstractController.html">AmorAbstractController</a><ul class='methods'><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#addAmorElementToPage">addAmorElementToPage</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#addNewPage">addNewPage</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#doPersist">doPersist</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getContentCount">getContentCount</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getJWTToken">getJWTToken</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getLocaleContent">getLocaleContent</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getValueByLocale">getValueByLocale</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#populateModel">populateModel</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#readPageContent">readPageContent</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#searchForPages">searchForPages</a></li></ul></li><li><a href="module-amorCms.AmorAbstractTransformer.html">AmorAbstractTransformer</a></li><li><a href="module-amorCms.AmorFactory.html">AmorFactory</a></li><li><a href="module-amorCms.AmorModel.html">AmorModel</a><ul class='methods'><li data-type='method'><a href="module-amorCms.AmorModel.html#load">load</a></li><li data-type='method'><a href="module-amorCms.AmorModel.html#loadContent">loadContent</a></li></ul></li><li><a href="module-amorCms-AmorAbstractAuthHandler.html">AmorAbstractAuthHandler</a></li><li><a href="module-amorCms-AmorAbstractController.html">AmorAbstractController</a></li><li><a href="module-amorCms-AmorAbstractTransformer.html">AmorAbstractTransformer</a></li><li><a href="module-amorCms-AmorAuthHandler.html">AmorAuthHandler</a></li><li><a href="module-amorCms-AmorError.html">AmorError</a></li><li><a href="module-amorCms-AmorFactory.html">AmorFactory</a></li><li><a href="module-amorCms-AmorModel.html">AmorModel</a></li><li><a href="module-amorCms-SupabaseAuthHandler.html">SupabaseAuthHandler</a></li><li><a href="module-amorCustom.AmorApiController.html">AmorApiController</a></li><li><a href="module-amorCustom.AmorWebSpaceController.html">AmorWebSpaceController</a></li><li><a href="module-amorCustom-AmorApiController.html">AmorApiController</a></li><li><a href="module-amorCustom-AmorWebSpaceController.html">AmorWebSpaceController</a></li></ul><h3>Modules</h3><ul><li><a href="module-amorCms.html">amorCms</a></li><li></li><li></li><li></li><li><a href="module-amorCustom.html">amorCustom</a></li><li></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">AmorAbstractController.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+/** @module amorCms  */
+/**
+ * @file AmorAbstractController.js
+ * @copyright (C) 2025 Danny Amor Joubolo danny.amor.joubolo@protonmail.com
+ *
+ *
+ */
+import {AmorModel, AmorError, AmorAbstractAuthHandler} from "@amor/amor-cms";
+
+/**
+ * The AmorAbstractController is the class that interacts with the model of the respective cms
+ * @class AmorAbstractController
+ * @classdesc  The AmorAbstractController is the base class which needs to be extended in order to run an Amor-cms.
+ * An AmorModel loads the configuration of the cms by interacting with a configured Amor-controller.
+ * The controller  is responsible to read and write data from the model in a model/view-paradigm.A functioning
+ * installation requires an implementation of this class by overriding its abstract methods. The Amor-library provides
+ * two controllers that are ready-to-use: AmorWebSpaceController and AmorApiController
+ *
+ */
+export class AmorAbstractController {
+    /**
+     * Abstract constructor that is called when a new controller is instantiated from an extending class.
+     * @param {AmorModel} amorCmsModel - An instance of class AmorModel.
+     * @throws {AmorError} If `amorCmsModel` is not the instance of an AmorModel, or when trying to instantiate directly.
+     */
+    constructor(amorCmsModel) {
+        if (!(amorCmsModel instanceof AmorModel)) {
+            throw new AmorError("Constructor argument is not a AmorModel object.");
+        }
+        if (new.target === AmorAbstractController) {
+            throw new AmorError("Cannot instantiate abstract class AmorAbstractController.");
+        }
+
+     
+
+    }
+
+    /**
+     * Path to the default content file. This constant will be used only as fallback by the
+     * AmorWebSpaceController, if the load of the
+     * config-object in AmorModel.load(config) fails for some reason. Other types of controller might find this property
+     * useful as well.
+     * @static
+     * @type {string}
+     */
+    static CONTENT_FILE_PATH = "/amor/amorContent.json";
+
+    runPostConstruct() {
+        console.info("::: Call from AbstractAmorController: Controller ", this, " was instantiated");
+    }
+
+
+    async getModelContent() {
+		//TODO
+        const data = this.model["content"] || this.model["amorContent"]  ;
+        if (!data) throw new AmorError.throwNew(AmorError.info.NO_MODEL_AVAILABLE, [], AmorAbstractController);
+    }
+
+  
+    localizeApplicationTexts(iso) {
+        //TODO
+        console.info("Application-Texts of Controller are not yet localized for iso", iso, ". Only English is available.");
+    }
+
+  
+
+    setUserMessage(message) {
+        this.userMessageUI.innerText += message + "\n";
+    }
+
+    async getValue(amorKey) {
+        const value = await this.getValueByLocale(this.locale, amorKey);
+        return value;
+    }
+
+
+    /**
+     * Get a value from the Amor-model. Retrieved values are always related to a specific language. So we need to
+     * consider the specific locale for any implementation
+     * @param {string} isoKey - language-mnemonic in ISO-format
+     * @param {number} amorKey - a key that uniquely identifies a content-item in the model, based on the Amor-schema for
+     * the specified locale
+     * @abstract
+     * @throws {AmorError} If the method is called directly from the abstract base class instead of an extension
+     *                      Error code: 1001.
+     */
+    async getValueByLocale(isoKey, amorKey) {
+        const errObj = {};
+        errObj.code = 1001;
+        errObj.message = `Unallowed call to abstract method 'getValue' in AmorAbstractController for key ${amorKey}[${isoKey}]. You need to set a reference to an implementation of AmorAbstractController in your configuration`;
+        errObj.throwingClass = AmorAbstractController;
+        throw new AmorError(errObj);
+    }
+
+    /**
+     * Write value(s) persistently to be retrieved later from the Amor-model. The passed parameter is an object with
+     * instructions that depend on the implementation. Implementors may  choose what the function shall return
+     * @param {object} instructionObject - object containing instructions about how the data shall be persisted, depending
+     * on the implementation
+     * @abstract
+     * @throws {AmorError} If the method is called directly from the abstract base class instead of an extension
+     *                      Error code: 1002.
+     */
+    async doPersist(instructionObject) {
+        const errObj = {};
+        errObj.code = 1002;
+        errObj.message = `Unallowed call to abstract method 'doPersist(${instructionObject}' in AmorAbstractController. You need to set a reference to an implementation of AmorAbstractController in your configuration`;
+        errObj.throwingClass = AmorAbstractController;
+        throw new AmorError(errObj);
+    }
+
+    /**
+     * Load the default content-data at startup to be retrieved later from the Amor-model.
+     * Implementors must choose a boolean value to return which indicates if the population of the model was successful.
+     * This function will be triggered only if the
+     * configuration has set  the parameter "loadDefaultContent":true
+     * @abstract
+     * @returns {boolean}  indicates (in an extending class) if the model has been populated
+     * @throws {AmorError} If the method is called directly from the abstract base class instead of an extension
+     *                      Error code: 1003.
+     */
+    async populateModel() {
+        const errObj = {};
+        errObj.code = 1003;
+        errObj.message = "Unallowed call to abstract method 'populateModel' in AmorAbstractController. Either your controller lacks this method or you need to set a reference to an implementation of AmorAbstractController in your configuration";
+        errObj.throwingClass = AmorAbstractController;
+        throw new AmorError(errObj);
+        if (true) return true;//unreachable code. But avoids IDE error - messages
+    }
+
+    /**
+     * Load  and read the specified page.
+     * The function must return an Amor-page adhering to the page-object of the Amor-schema.
+     * @param {string|object} page - The page to be loaded and rendered
+     * @abstract
+     * @throws {AmorError} If the method is called directly from the abstract base class instead of an extension
+     *                      Error code: 1004.
+     */
+    async readPageContent(page) {
+        const errObj = {};
+        errObj.code = 1004;
+        errObj.message = `Unallowed call to abstract method 'updateContent(${page})' in AmorAbstractController. Either your controller lacks this method or you need to set a reference to an implementation of AmorAbstractController in your configuration`;
+        errObj.throwingClass = AmorAbstractController;
+        throw new AmorError(errObj);
+    }
+
+    /**
+     * @todo implementation design
+     * @param {string} pageName - The page to be added to the cms
+     * @abstract
+     * @throws {AmorError} If the method is called directly from the abstract base class instead of an extension
+     *                      Error code: 1005.
+     */
+    async addNewPage(pageName) {
+        const errObj = {};
+        errObj.code = 1005;
+        errObj.message = `Unallowed call to abstract method 'addNewPage(${pageName})' in AmorAbstractController. Either your controller lacks this method or you need to set a reference to an implementation of AmorAbstractController in your configuration`;
+        errObj.throwingClass = AmorAbstractController;
+        throw new AmorError(errObj);
+    }
+
+    /**
+     * @todo implementation design
+     * @abstract
+     * @param {object} element - A DOM element
+     * @param {string} pageName - The page to be added to the cms
+     * @throws {AmorError} If the method is called directly from the abstract base class instead of an extension
+     *                      Error code: 1006.
+     */
+    async addAmorElementToPage(element, pageName) {
+        const errObj = {};
+        errObj.code = 1006;
+        errObj.message = `Unallowed call to abstract method 'addAmorElementToPage(${element},${pageName})' in AmorAbstractController. Either your controller lacks this method or you need to set a reference to an implementation of AmorAbstractController in your configuration`
+        errObj.throwingClass = AmorAbstractController;
+        throw new AmorError(errObj);
+    }
+
+    /**
+     * Lookup what pages do exist based on the specified textToken
+     * @param {string} textToken token to be used for the search of pages with the textToken in its name
+     * @abstract
+     * @throws {AmorError} If the method is called directly from the abstract base class instead of an extension
+     *                      Error code: 1007.
+     */
+    async searchForPages(textToken) {
+        const errObj = {};
+        errObj.code = 1007;
+        errObj.message = `Unallowed call to abstract method 'searchForPagesByPrefix(${textToken}' in AmorAbstractController. Either your controller lacks this method or you need to set a reference to an implementation of AmorAbstractController in your configuration`
+        errObj.throwingClass = AmorAbstractController;
+        if (true) throw new AmorError(errObj);
+        return [];//unreachable code. But avoids IDE error - messages
+    }
+
+    /**
+     * Retrieve the whole model-data related to the current view and locale
+     * @param {string} locale ISO-locale
+     * @abstract
+     * @throws {AmorError} If the method is called directly from the abstract base class instead of an extension
+     *                      Error code: 1010.
+     * cms, depending on the implementation.
+     */
+    async getLocaleContent(locale) {
+        const errObj = {};
+        errObj.code = 1010;
+        errObj.message = `Unallowed call to abstract method 'getLocaleContent(${locale}' in AmorAbstractController. Either your controller lacks this method or you need to set a reference to an implementation of AmorAbstractController in your configuration`
+        errObj.throwingClass = AmorAbstractController;
+        throw new AmorError(errObj);
+    }
+
+    /**
+     * Retrieve a JWT-token after login
+     * @todo Parameter p is not allowed here
+     * @param {string } u
+     * @param {string } p
+     * @abstract
+     * @throws {AmorError} If the method is called directly from the abstract base class instead of an extension
+     *                      Error code: 1020.
+     */
+    async getJWTToken(u, p) {
+        const errObj = {};
+        errObj.code = 1020;
+        errObj.message = `Unallowed call to abstract method 'getJWTToken(u,p)' in AmorAbstractController. Either your controller lacks this method or you need to set a reference to an implementation of AmorAbstractController in your configuration`
+        errObj.throwingClass = AmorAbstractController;
+        throw new AmorError(errObj);
+        return {};//unreachable code. But avoids IDE error - messages
+    }
+
+
+    /**
+     * Retrieve how many content items exist for the current view
+     * @abstract
+     * @throws {AmorError} If the method is called directly from the abstract base class instead of an extension
+     *                      Error code: 1030.
+
+     */
+    async getContentCount() {
+        const errObj = {};
+        errObj.code = 1030;
+        errObj.message = `Unallowed call to abstract method 'getContentCount()' in AmorAbstractController. Either your controller lacks this method or you need to set a reference to an implementation of AmorAbstractController in your configuration`
+        errObj.throwingClass = AmorAbstractController;
+        throw new AmorError(errObj);
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Tue Oct 21 2025 23:49:12 GMT+0200 (Mitteleuropäische Sommerzeit) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

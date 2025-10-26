@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>AmorFactory.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-amorCms.AmorAbstractController.html">AmorAbstractController</a><ul class='methods'><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#addAmorElementToPage">addAmorElementToPage</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#addNewPage">addNewPage</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#doPersist">doPersist</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getContentCount">getContentCount</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getJWTToken">getJWTToken</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getLocaleContent">getLocaleContent</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getValueByLocale">getValueByLocale</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#populateModel">populateModel</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#readPageContent">readPageContent</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#searchForPages">searchForPages</a></li></ul></li><li><a href="module-amorCms.AmorAbstractTransformer.html">AmorAbstractTransformer</a></li><li><a href="module-amorCms.AmorFactory.html">AmorFactory</a></li><li><a href="module-amorCms.AmorModel.html">AmorModel</a><ul class='methods'><li data-type='method'><a href="module-amorCms.AmorModel.html#load">load</a></li><li data-type='method'><a href="module-amorCms.AmorModel.html#loadContent">loadContent</a></li></ul></li><li><a href="module-amorCms-AmorAbstractAuthHandler.html">AmorAbstractAuthHandler</a></li><li><a href="module-amorCms-AmorAbstractController.html">AmorAbstractController</a></li><li><a href="module-amorCms-AmorAbstractTransformer.html">AmorAbstractTransformer</a></li><li><a href="module-amorCms-AmorAuthHandler.html">AmorAuthHandler</a></li><li><a href="module-amorCms-AmorError.html">AmorError</a></li><li><a href="module-amorCms-AmorFactory.html">AmorFactory</a></li><li><a href="module-amorCms-AmorModel.html">AmorModel</a></li><li><a href="module-amorCms-SupabaseAuthHandler.html">SupabaseAuthHandler</a></li><li><a href="module-amorCustom.AmorApiController.html">AmorApiController</a></li><li><a href="module-amorCustom.AmorWebSpaceController.html">AmorWebSpaceController</a></li><li><a href="module-amorCustom-AmorApiController.html">AmorApiController</a></li><li><a href="module-amorCustom-AmorWebSpaceController.html">AmorWebSpaceController</a></li></ul><h3>Modules</h3><ul><li><a href="module-amorCms.html">amorCms</a></li><li></li><li></li><li></li><li><a href="module-amorCustom.html">amorCustom</a></li><li></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">AmorFactory.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+/** @module amorCms  */
+/**
+ * @file AmorFactory.js
+ * @copyright (C) 2025 Danny Amor Joubolo danny.amor.joubolo@protonmail.com
+ */
+import {
+    AmorAbstractController,
+    AmorModel,
+    AmorAuthHandler,
+    SupabaseAuthHandler
+} from "@amor/amor-cms";
+import {
+    AmorApiController,
+    AmorWebSpaceController
+} from "@amor/amor-custom";
+import {createClient} from "@supabase/supabase-js";
+
+/**
+ * The factory class of Amor-cms
+ * @class AmorFactory
+ * @classdesc The factory of Amor-cms has the task of creating the necessary controller(s) and authHandler(s) of the
+ * application(s) being developed with Amor-cms. The Amor factory-class is a static class and cannot be instantiated. Use AmorFactory.createXXX(args).
+ * @hideconstructor
+ */
+export class AmorFactory {
+    /**
+     * Virtual constructor of the AmorFactory.
+     */
+    constructor() {
+        throw new AmorError("The Amor factory-class is a static class and cannot be instantiated. Use AmorFactory.createXXX(args).  ");
+    }
+
+    /**
+     * Creates a controller based on the provided parameters.
+     * @param {string} controllerName - The type-name (or a synonym) of the controller to be created
+     * @param {AmorModel} cms - an instance of type AmorModel
+     * @returns {AmorAbstractController} an instance of type controllerName
+     * @throws {AmorError} If the passed parameter cms is not an AmorModel or the  controller could not be created
+     */
+    static createController = (controllerName, cms) => {
+        if (!(cms instanceof AmorModel)) {
+            throw new AmorError("Constructor argument is not a Amor object.");
+        }
+
+        let controller = null;
+        switch (controllerName) {
+            case "Api":
+            case "AmorApiController":
+                controller = new AmorApiController(cms);
+                break;
+            case "WebSpace":
+            case "AmorWebSpaceController":
+                controller = new AmorWebSpaceController(cms);
+                break;
+            default:
+                throw new AmorError(`Unknown controller name: ${controllerName}`);
+        }
+        if (controller &amp;&amp; controller instanceof AmorAbstractController) {
+            controller.runPostConstruct();
+            return controller;
+        } else throw new AmorError(`Controller-creation failed. Controller name: ${controllerName}`);
+
+    }
+
+    /**
+     * Creates an authHandler  based on the provided parameters.
+     * @param {string} authHandlerName - The type-name (or a synonym) of the authentication-handler to be created
+     * @param {AmorAbstractController} controller - an instance of an Amor controller
+     * @returns {AmorAbstractAuthHandler} an instance of type authHandlerName
+     * @throws {AmorError} If the passed controller is not of type AmorAbstractController or the authHandler could not be created
+     */
+    static createAuthHandler = (authHandlerName, controller) => {
+        if (!(controller instanceof AmorAbstractController)) {
+            throw new AmorError("Constructor argument is not a controller.");
+        }
+        if (!(controller.cms instanceof AmorModel)) {
+            throw new AmorError("Constructor argument is not a controller with an Amor-object as attribute.");
+        }
+
+        switch (authHandlerName) {
+            case "Standard":
+            case "Amor":
+            case "AmorAuthHandler":
+                return new AmorAuthHandler(controller);
+            case "supabase":
+                const supabase = createClient(controller.cms.config["supabaseUrl"], controller.cms.config["supabaseKey"]);
+                return new SupabaseAuthHandler(controller, supabase);
+            default:
+                throw new AmorError(`Unknown authHandlerName : ${authHandlerName}`);
+        }
+    }
+
+}
+
+
+/**
+ * The AmorError-class
+ * @class AmorError
+ * @classdesc The base class to catch, handle and document Amor-Errors
+ *
+ * */
+export class AmorError extends Error {
+    // Shared fallback bus if no instance is provided
+    static sharedBus = new EventTarget();
+    
+    constructor(errorInput, error) {
+        
+
+    }
+
+    // Convenience method to attach a listener to the shared fallback bus
+    static onShared(listener) {
+        AmorError.sharedBus.addEventListener("AMOR_ERROR", listener);
+    }
+}
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Tue Oct 21 2025 23:49:12 GMT+0200 (Mitteleuropäische Sommerzeit) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

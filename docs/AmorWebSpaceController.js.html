@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>AmorWebSpaceController.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-amorCms.AmorAbstractController.html">AmorAbstractController</a><ul class='methods'><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#addAmorElementToPage">addAmorElementToPage</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#addNewPage">addNewPage</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#doPersist">doPersist</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getContentCount">getContentCount</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getJWTToken">getJWTToken</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getLocaleContent">getLocaleContent</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#getValueByLocale">getValueByLocale</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#populateModel">populateModel</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#readPageContent">readPageContent</a></li><li data-type='method'><a href="module-amorCms.AmorAbstractController.html#searchForPages">searchForPages</a></li></ul></li><li><a href="module-amorCms.AmorAbstractTransformer.html">AmorAbstractTransformer</a></li><li><a href="module-amorCms.AmorFactory.html">AmorFactory</a></li><li><a href="module-amorCms.AmorModel.html">AmorModel</a><ul class='methods'><li data-type='method'><a href="module-amorCms.AmorModel.html#load">load</a></li><li data-type='method'><a href="module-amorCms.AmorModel.html#loadContent">loadContent</a></li></ul></li><li><a href="module-amorCms-AmorAbstractAuthHandler.html">AmorAbstractAuthHandler</a></li><li><a href="module-amorCms-AmorAbstractController.html">AmorAbstractController</a></li><li><a href="module-amorCms-AmorAbstractTransformer.html">AmorAbstractTransformer</a></li><li><a href="module-amorCms-AmorAuthHandler.html">AmorAuthHandler</a></li><li><a href="module-amorCms-AmorError.html">AmorError</a></li><li><a href="module-amorCms-AmorFactory.html">AmorFactory</a></li><li><a href="module-amorCms-AmorModel.html">AmorModel</a></li><li><a href="module-amorCms-SupabaseAuthHandler.html">SupabaseAuthHandler</a></li><li><a href="module-amorCustom.AmorApiController.html">AmorApiController</a></li><li><a href="module-amorCustom.AmorWebSpaceController.html">AmorWebSpaceController</a></li><li><a href="module-amorCustom-AmorApiController.html">AmorApiController</a></li><li><a href="module-amorCustom-AmorWebSpaceController.html">AmorWebSpaceController</a></li></ul><h3>Modules</h3><ul><li><a href="module-amorCms.html">amorCms</a></li><li></li><li></li><li></li><li><a href="module-amorCustom.html">amorCustom</a></li><li></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">AmorWebSpaceController.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+/** @module amorCustom  */
+/**
+ * @file AmorWebSpaceController.js
+ * @copyright (C) 2025 Danny Amor Joubolo danny.amor.joubolo@protonmail.com
+ */
+import {AmorError, AmorAbstractController} from "@amor/amor-cms";
+/**
+ * The AmorWebSpaceController is the simplest controller-type of Amor-cms
+ * @class AmorWebSpaceController
+ * @augments AmorAbstractController
+ * @classdesc
+ *    The AmorWebSpaceController reads content-values from the web-space
+ *    or web-server where the cms is hosted.
+ *    It is a "readonly-"controller unable to write values to the hosting web-space. Its implemented doPersist-method
+ *    only returns the content in a dummy fashion.
+ *    It is up to the implementing page to implement how to upload to the web-space the new content. In the simplest
+ *    setup, the users will simply upload the content -stored as JSON-file(s) adhering to the schema of Amor- manually
+ *    to their web-space.
+ *
+ */
+export class AmorWebSpaceController extends AmorAbstractController {
+    /**
+     * Constructs the instance of an AmorWebSpaceController.
+     * @param {AmorModel} cms - An instance of class AmorModel.
+     * @throws {AmorError} If `cms` is not the instance of an AmorModel
+     */
+    constructor(cms) {
+        super(cms);
+        this.___amorType = "AmorWebSpaceController";
+
+    }
+
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Tue Oct 21 2025 23:49:12 GMT+0200 (Mitteleuropäische Sommerzeit) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
