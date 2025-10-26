@@ -231,7 +231,7 @@
           "type": "string"
         }
       },
-      "description": "An object where keys are valid ISO 639-1 language codes or IETF Language Tags. May include an optional '___amorType' attribute for development convenience"
+      "description": "An object where keys are valid ISO 639-1 language codes or IETF Language Tags. May include an optional '___amorType' attribute for development convenience. The keys of the nested objects must be valid integers "
     },
     "supportedLanguages": {
       "type": "array",
@@ -464,7 +464,7 @@
       },
       "additionalProperties": false,
       "minProperties": 0,
-      "description": "An object where keys match the pattern '^[a-zA-Z_][a-zA-Z0-9\\-_:]*$' and values are non-negative integers."
+      "description": "An object where keys match the pattern '^[a-zA-Z_][a-zA-Z0-9\\-_:]*$' and values are non-negative integers. For referential integrity, every value in this object must be a valid integer and match a key of one of the nested objects of the content object. All keys must be valid strings suitable for DOM ID attributes."
     },
     "copyright": {
       "type": "string",
